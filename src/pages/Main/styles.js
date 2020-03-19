@@ -5,57 +5,60 @@ export const Container = styled.div`
   background: #fefefe;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
-    
 `;
+
 
 export const Content = styled.div`
   width: 100%;
   max-width: 900px;
   text-align: center;
-
-  .btn_group{
+  h1{
+    margin:50px 0;
+  }
+  .margin-r{
+    margin-right: 10px;
+  }
+  .group-select{
+    margin-top: 10px;
     display: flex;
-    justify-content: space-around;
+    input{
+      width: 48%;
+    }
+    > div{
+      flex-grow: 1;
+    }
+  }
+  .btn_group{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
   }
   .bg-orange{
     background: #fc9c26;
   }
-
+  .inp-group{
+    margin-top: 10px;
+    display: flex;
+    div{
+      flex-grow: 1;
+    }
+  }
   form {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 50px;
 
-    input {
+    input[class="inp-custom"]{
+      width: 100%;
       border-radius: 6px;
-      height: 36px;
+      height: 38px;
       padding: 0 15px;
       margin: 0 10px 10px;
-      &:nth-child(3){
-        margin-left: 20px;
-        width: 200px;
-      }
-    }
-
-    div{
-      display: flex;
-      align-items: center;
-      input {
-        &:nth-child(2){
-          flex-grow: 1;
-        }
-      }
-    }
-    .inp-md{
-      width: 400px;
-    }
-    .address{
-      margin-left: 15px;
-      margin-bottom: 10px;
     }
     h4{
       text-align: start;
+      margin-left: 15px;
+      margin-bottom: 10px;
     }
     button{
       background: green;
@@ -64,10 +67,14 @@ export const Content = styled.div`
       height: 44px;
       padding: 0 15px;
       color: #fff;
-      margin: 0 0 10px;
-
+      margin: 0 10px;
+      &:hover{
+        border: 3px solid #c3c3c3;
+      }
     }
+  }
+  span{
+    color: red;
     
-
   }
 `;

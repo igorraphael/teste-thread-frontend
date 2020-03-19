@@ -1,42 +1,87 @@
 import React from 'react';
-
+import Navbar from '../../components/Navbar';
 import { Container, Content } from './styles';
+import CustomSelect from '../../components/CustomSelect'; 
+import { Form, Input } from '@rocketseat/unform';
+import * as Yup from 'yup';
+
+const optionsSelect = [
+  { value: 'residencial', label: 'Residencial' },
+  { value: 'comercial', label: 'Comercial' }
+];
+
+const schema = Yup.object().shape({
+  rz_social: Yup.string().required('Razão social é obrigatório.'),
+  fantasia: Yup.string(),
+  telefone: Yup.string().required('Telefone é obrigatório.'),
+  email: Yup.string().email('Insira um e-mail válido.').required('Telefone é obrigatório.'),
+  logradouro: Yup.string().required('Logradouro é obrigatório.'),
+  complemento: Yup.string().required('Complemento é obrigatório.'),
+  cep: Yup.string().required('CEP é obrigatório.'),
+  referencia: Yup.string().required('Referencia é obrigatório.'),
+  tipo: Yup.string().required('Tipo obrigatório'),
+});
 
 export default function Main() {
+  /**
+   * Submit form 
+   */
+  function handleSubmit(data){
+    console.log(data);
+  }
+
   return (
     <Container>
       <Content>
-        <h1>Teste THREAD</h1>
-        <form>
-          <input type="text" placeholder="Razão Social" />
-          <input type="text" placeholder="Fantasia" />
+        <h1>TESTE - THREAD SISTEMAS</h1>
+          <h3>Uma aplicação para criar cadastro de clientes com endereços.</h3>
+          <Navbar />
+        <Form onSubmit={handleSubmit} schema={schema}>
           <div>
-            <input type="text" placeholder="Telefone" />
-            <input type="text" placeholder="E-mail" />
+            <Input name="rz_social" type="text" className="inp-custom" placeholder="Razão Social" />
           </div>
-          <div className="address">
+          <div style={{marginTop: 10}}>
+            <Input name="fantasia" type="text" className="inp-custom" placeholder="Fantasia" />
+          </div>
+          
+          {/* <Input name="fantasia" type="text" className="inp-custom" placeholder="Fantasia" /> */}
+
+          <div className="inp-group">
+            <div className="margin-r">
+              <Input name="telefone" type="text" className="inp-custom" placeholder="Telefone" />
+            </div>
+            <div>
+              <Input name="email" type="text" className="inp-custom" placeholder="E-mail" />
+            </div>
+          </div>
             <h4>Endereços</h4>
-          </div>
-          <input type="text"  placeholder="Logradouro" />
           <div>
-            <input type="text" className="inp-md" placeholder="Complemento" />
-            <input type="text" placeholder="CEP" />
+            <Input name="logradouro" type="text" className="inp-custom" placeholder="Logradouro" />
           </div>
-          <div>
-          <input type="text" className="inp-md" placeholder="Ponto de referencia" />
-          <label for="add_type">Tipo:</label>
-            <select id="add_type">
-              <option value="residencial">Residencial</option>
-              <option value="comercial">Comercial</option>
-            </select>
+          
+          <div className="inp-group">
+            <div className="margin-r">
+              <Input name="complemento" type="text" className="inp-custom" placeholder="Complemento" />
+            </div>
+            <div>
+              <Input name="cep" type="text" className="inp-custom" placeholder="CEP" />
+            </div>
+          </div>
+          <div className="group-select" >
+            <div style={{marginRight: 20}}>
+              <Input name="referencia" type="text" className="inp-custom" placeholder="Ponto de referencia" />
+            </div>
+            <div>
+              <CustomSelect name="tipo" placeholder={'Tipo de endereço'} options={optionsSelect} isSearchable={false}/>
+            </div>
+          
           </div>
           <div className="btn_group">
             <button type="submit">Salvar</button>
             <button type="button" className="bg-orange">Limpar</button>
           </div>
-        </form> 
+        </Form> 
       </Content>
-      
     </Container>
   );
 }
