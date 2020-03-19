@@ -4,7 +4,7 @@ import { useField } from '@rocketseat/unform';
 
 const CustomSelect = ({ name, ...rest }) => {
   const selectRef = useRef(null);
-  const { fieldName, defaultValue, registerField } = useField(name);
+  const { fieldName, defaultValue, registerField, error } = useField(name);
   useEffect(() => {
     registerField({
       name: fieldName,
@@ -24,14 +24,18 @@ const CustomSelect = ({ name, ...rest }) => {
         }
       },
     });
-  }, [fieldName, registerField, rest.isMulti]);
+  }, [error, fieldName, registerField, rest.isMulti]);
   return (
-    <ReactSelect
-      defaultValue={defaultValue}
-      ref={selectRef}
-      classNamePrefix="react-select"
-      {...rest}
-    />
+    <>
+      <ReactSelect
+        defaultValue={defaultValue}
+        ref={selectRef}
+        classNamePrefix="react-select"
+        {...rest}
+      />
+      {error && <span style={{display: 'block', marginTop: 10}}>Tipo obrigatório</span>}
+    </>
+    
   );
 };
 export default CustomSelect;
