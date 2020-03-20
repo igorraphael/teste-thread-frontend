@@ -11,14 +11,17 @@ const options = [
 ];
 
 const schema = Yup.object().shape({
-  tipo2: Yup.string().required(),
+  tipo: Yup.object().shape({
+    label: Yup.string(),
+    value: Yup.string()
+  })
 });
 
 export default function Lista() {
 
-  function handleSubmit(data){
+  function handleSubmit({tipo}){
 
-    console.log(data);
+    console.log(tipo.value);
   }
 
   return (
@@ -30,7 +33,7 @@ export default function Lista() {
             <h1> Listagem de clientes  </h1>
             <Form onSubmit={handleSubmit} schema={schema}>
               <ContentSearch>
-                <CustomSelect name="tipo2" placeholder={'Tipo de endereço'} options={options} isSearchable={false}/>
+                <CustomSelect name="tipo" placeholder={'Tipo de endereço'} options={options} isSearchable={false}/>
                 <button type="submit"> Buscar </button>
               </ContentSearch>
             </Form>

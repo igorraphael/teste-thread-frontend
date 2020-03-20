@@ -19,7 +19,10 @@ const schema = Yup.object().shape({
   complemento: Yup.string().required('Complemento é obrigatório.'),
   cep: Yup.string().required('CEP é obrigatório.'),
   referencia: Yup.string().required('Referencia é obrigatório.'),
-  tipo: Yup.string().required()
+  tipo: Yup.object().shape({
+    label: Yup.string(),
+    value: Yup.string()
+  })
 });
 
 export default function Main() {
@@ -43,9 +46,6 @@ export default function Main() {
           <div style={{marginTop: 10}}>
             <Input name="fantasia" type="text" className="inp-custom" placeholder="Fantasia" />
           </div>
-          
-          {/* <Input name="fantasia" type="text" className="inp-custom" placeholder="Fantasia" /> */}
-
           <div className="inp-group">
             <div className="margin-r">
               <Input name="telefone" type="text" className="inp-custom" placeholder="Telefone" />
