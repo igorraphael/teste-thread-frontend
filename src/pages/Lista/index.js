@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import { Container, Content, ContentSearch } from './styles';
 import CustomSelect from '../../components/CustomSelect'; 
+import Table from '../../components/Table'; 
 import { Form } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
@@ -18,12 +19,12 @@ const schema = Yup.object().shape({
 });
 
 export default function Lista() {
+  const [tipo, setTipo] = useState(null);
 
-  function handleSubmit({tipo}){
-
-    console.log(tipo.value);
+  function handleSubmit({ tipo }){
+    setTipo( tipo.value );
   }
-
+  
   return (
     <Container>
       <Content>
@@ -36,8 +37,10 @@ export default function Lista() {
                 <CustomSelect name="tipo" placeholder={'Tipo de endereço'} options={options} isSearchable={false}/>
                 <button type="submit"> Buscar </button>
               </ContentSearch>
-            </Form>
+            </Form>    
+          <Table addressType={tipo}/>
       </Content>
+ 
     </Container>
   );
 }
