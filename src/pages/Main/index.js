@@ -5,6 +5,7 @@ import CustomSelect from '../../components/CustomSelect';
 import InputMask from '../../components/InputMask'; 
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
+import api from '../../services/api';
 
 const optionsSelect = [
   { value: 'residencial', label: 'Residencial' },
@@ -30,8 +31,17 @@ export default function Main() {
   /**
    * Submit form 
    */
-  function handleSubmit(data){
-    console.log(data);
+  async function handleSubmit({ rz_social, fantasia, telefone, email, logradouro, complemento, cep, referencia, tipo }){
+    const value = tipo.value;
+      try {
+        const res = await api.post('/clients', { rz_social, fantasia, telefone, email, logradouro, complemento, cep, referencia, tipo: value });
+        if(res.status === 200){
+          alert('Cadastro realizado com sucesso!');
+        }
+      } catch (error) {
+        const { data } = error.response;
+        alert(data.error);
+      }
   }
 
   return (
