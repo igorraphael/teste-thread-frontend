@@ -19,7 +19,7 @@ const schema = Yup.object().shape({
   complemento: Yup.string().required('Complemento é obrigatório.'),
   cep: Yup.string().required('CEP é obrigatório.'),
   referencia: Yup.string().required('Referencia é obrigatório.'),
-  tipo: Yup.string().required('Tipo obrigatório'),
+  tipo: Yup.string().required()
 });
 
 export default function Main() {

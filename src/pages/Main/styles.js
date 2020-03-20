@@ -75,6 +75,5 @@ export const Content = styled.div`
   }
   span{
     color: red;
-    
   }
 `;
