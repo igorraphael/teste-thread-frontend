@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../../components/Navbar';
 import { Container, Content } from './styles';
 import CustomSelect from '../../components/CustomSelect'; 
+import InputMask from '../../components/InputMask'; 
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
@@ -14,7 +15,7 @@ const schema = Yup.object().shape({
   rz_social: Yup.string().required('Razão social é obrigatório.'),
   fantasia: Yup.string(),
   telefone: Yup.string().required('Telefone é obrigatório.'),
-  email: Yup.string().email('Insira um e-mail válido.').required('Telefone é obrigatório.'),
+  email: Yup.string().email('Insira um e-mail válido.').required('E-mail é obrigatório.'),
   logradouro: Yup.string().required('Logradouro é obrigatório.'),
   complemento: Yup.string().required('Complemento é obrigatório.'),
   cep: Yup.string().required('CEP é obrigatório.'),
@@ -48,7 +49,7 @@ export default function Main() {
           </div>
           <div className="inp-group">
             <div className="margin-r">
-              <Input name="telefone" type="text" className="inp-custom" placeholder="Telefone" />
+              <InputMask mask="(99) 9999-9999" name="telefone" type="text" className="inp-custom" placeholder="Telefone" />
             </div>
             <div>
               <Input name="email" type="text" className="inp-custom" placeholder="E-mail" />
@@ -64,7 +65,7 @@ export default function Main() {
               <Input name="complemento" type="text" className="inp-custom" placeholder="Complemento" />
             </div>
             <div>
-              <Input name="cep" type="text" className="inp-custom" placeholder="CEP" />
+              <InputMask mask="99999-999" name="cep" type="text" className="inp-custom" placeholder="CEP" />
             </div>
           </div>
           <div className="group-select" >
@@ -78,7 +79,7 @@ export default function Main() {
           </div>
           <div className="btn_group">
             <button type="submit">Salvar</button>
-            <button type="button" className="bg-orange">Limpar</button>
+            <button type="reset" className="bg-orange">Limpar</button>
           </div>
         </Form> 
       </Content>
